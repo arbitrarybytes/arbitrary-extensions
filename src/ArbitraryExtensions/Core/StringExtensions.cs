@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ArbitraryExtensions.Core
+﻿namespace ArbitraryExtensions.Core
 {
     public static class StringExtensions
     {

@@ -1,5 +1,3 @@
-using System;
-
 using ArbitraryExtensions.Core;
 
 using NUnit.Framework;
@@ -59,6 +57,15 @@ namespace ArbitraryExtensions.Tests
         public void TestDefaultIfNullOrWhitespaceWithDefaultValue(string value, string defaultValue, string expect)
         {
             Assert.AreEqual(expect, StringExtensions.DefaultIfNullOrWhitespace(value, defaultValue));
+        }
+
+        [Test]
+        [TestCase("this is a lowercase statement", false, "This Is A Lowercase Statement")]
+        [TestCase("MS VS", false, "MS VS")]
+        [TestCase("MSVS", true, "Msvs")]
+        public void TestTitleCase(string value, bool includeAllCaps, string expect)
+        {
+            Assert.AreEqual(expect, value.ToTitleCase(includeAllCaps));
         }
 
     }

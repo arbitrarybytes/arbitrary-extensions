@@ -1,0 +1,20 @@
+version: 0.1.{build}
+configuration: Release
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  version_prefix: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+before_build:
+- cmd: nuget restore src\ArbitraryExtensions.sln
+- choco install opencover.portable
+- choco install codecov
+build:
+  publish_nuget: true
+  include_nuget_references: true
+  verbosity: minimal
+  

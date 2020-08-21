@@ -4,6 +4,8 @@ using NUnit.Framework;
 
 namespace ArbitraryExtensions.Tests
 {
+
+    [TestFixture]
     public class StringExtensionsTests
     {
         [SetUp]

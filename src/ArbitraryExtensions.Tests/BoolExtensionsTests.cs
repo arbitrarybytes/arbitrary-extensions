@@ -5,6 +5,7 @@ using NUnit.Framework;
 
 namespace ArbitraryExtensions.Tests
 {
+    [TestFixture]
     public class BoolExtensionsTests
     {
         [Test]

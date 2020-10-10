@@ -7,13 +7,23 @@ namespace ArbitraryExtensions.Tests
     [TestFixture]
     public class DateTimeExtensionsTests
     {
-        static readonly DateTime today = DateTime.Now;
-
         [Test]
         public void TestIsInRange()
         {
-            var daysAgo = DateTime.Now.AddDays(-10);
-            //Assert.IsTrue(DateTime.Now.AddDays(-5).IsInRange(today, daysAgo));
+            var start = new DateTime(2020, 1, 1);
+            var end = new DateTime(2020, 2, 1);
+            var inRange = new DateTime(2020, 1, 5);
+
+            Assert.IsTrue(inRange.IsInRange(start, end));
+        }
+
+        [Test]
+        public void TestElapsed()
+        {
+            var start = new DateTime(2020, 1, 1);
+            var end = new DateTime(2020, 2, 1);
+
+            Assert.AreEqual((end - start), start.Elapsed(end));
         }
     }
 }

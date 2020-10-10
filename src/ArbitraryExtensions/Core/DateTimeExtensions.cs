@@ -5,8 +5,9 @@ namespace ArbitraryExtensions.Core
     {
         /// <summary>Gets the elapsed timespan between the provided value and DateTime.Now</summary>
         /// <param name="value">the start datetime value</param>
+        /// <param name="endDate">the end datetime</param>
         /// <returns>elapsed timespan instance</returns>
-        public static TimeSpan Elapsed(this DateTime value) => DateTime.Now.Subtract(value);
+        public static TimeSpan Elapsed(this DateTime value, DateTime endDate) => endDate.Subtract(value);
 
         /// <summary>Gets if the input date is between the provided start and end date</summary>
         /// <param name="currentDate">the input date</param>

@@ -8,10 +8,6 @@ namespace ArbitraryExtensions.Tests
     [TestFixture]
     public class StringExtensionsTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
 
         [Test]
         [TestCase(null, default(string))]
@@ -20,7 +16,7 @@ namespace ArbitraryExtensions.Tests
         [TestCase(" ", " ")]
         public void TestDefaultIfNullOrEmpty(string value, string expect)
         {
-            Assert.AreEqual(expect, StringExtensions.DefaultIfNullOrEmpty(value));
+            Assert.AreEqual(expect, value.DefaultIfNullOrEmpty());
         }
 
         [Test]
@@ -31,7 +27,7 @@ namespace ArbitraryExtensions.Tests
         [TestCase(" ", "Default", " ")]
         public void TestDefaultIfNullOrEmptyWithDefaultValue(string value, string defaultValue, string expect)
         {
-            Assert.AreEqual(expect, StringExtensions.DefaultIfNullOrEmpty(value, defaultValue));
+            Assert.AreEqual(expect, value.DefaultIfNullOrEmpty(defaultValue));
         }
 
         [Test]
@@ -44,7 +40,7 @@ namespace ArbitraryExtensions.Tests
         [TestCase("\t", default(string))]
         public void TestDefaultIfNullOrWhitespace(string value, string expect)
         {
-            Assert.AreEqual(expect, StringExtensions.DefaultIfNullOrWhitespace(value));
+            Assert.AreEqual(expect, value.DefaultIfNullOrWhitespace());
         }
 
         [Test]
@@ -58,13 +54,14 @@ namespace ArbitraryExtensions.Tests
         [TestCase("\t", "Default", "Default")]
         public void TestDefaultIfNullOrWhitespaceWithDefaultValue(string value, string defaultValue, string expect)
         {
-            Assert.AreEqual(expect, StringExtensions.DefaultIfNullOrWhitespace(value, defaultValue));
+            Assert.AreEqual(expect, value.DefaultIfNullOrWhitespace(defaultValue));
         }
 
         [Test]
         [TestCase("this is a lowercase statement", false, "This Is A Lowercase Statement")]
         [TestCase("MS VS", false, "MS VS")]
-        [TestCase("MSVS", true, "Msvs")]
+        [TestCase("MASKS", true, "Masks")]
+        [TestCase("", false, "")]
         public void TestTitleCase(string value, bool includeAllCaps, string expect)
         {
             Assert.AreEqual(expect, value.ToTitleCase(includeAllCaps));

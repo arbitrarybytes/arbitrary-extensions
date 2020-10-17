@@ -16,7 +16,7 @@
             if (value.HasValue)
                 return !value;
 
-            return toggleNull ? !value.GetValueOrDefault() : value;
+            return toggleNull ? true : default(bool?);
         }
     }
 }

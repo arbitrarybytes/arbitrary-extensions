@@ -68,5 +68,27 @@ namespace ArbitraryExtensions.Core
 
             return value.EndsWith(suffix, StringComparison.InvariantCultureIgnoreCase);
         }
+
+        /// <summary>URL encodes the provided string value</summary>
+        /// <param name="value">the value to URL encode</param>
+        /// <returns>the URL encoded value</returns>
+        public static string UrlEncode(this string value) => System.Net.WebUtility.UrlEncode(value);
+
+        /// <summary>URL decodes the provided string value</summary>
+        /// <param name="value">the value to URL decode</param>
+        /// <returns>the URL decoded value</returns>
+        public static string UrlDecode(this string value) => System.Net.WebUtility.UrlDecode(value);
+
+        /// <summary>HTML encodes the provided string value</summary>
+        /// <param name="value">the value to HTML encode</param>
+        /// <returns>the HTML encoded value</returns>
+        public static string HtmlEncode(this string value) => System.Net.WebUtility.HtmlEncode(value);
+
+        /// <summary>HTML decodes the provided string value</summary>
+        /// <param name="value">the value to HTML decode</param>
+        /// <returns>the HTML decoded value</returns>
+        public static string HtmlDecode(this string value) => System.Net.WebUtility.HtmlDecode(value);
+
+
     }
 }

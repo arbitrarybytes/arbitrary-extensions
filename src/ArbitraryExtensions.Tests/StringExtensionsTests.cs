@@ -1,120 +1,115 @@
 using ArbitraryExtensions.Core;
-
-using NUnit.Framework;
+using Xunit;
 
 namespace ArbitraryExtensions.Tests
 {
 
-    [TestFixture]
     public class StringExtensionsTests
     {
 
-        [Test]
-        [TestCase(null, default(string))]
-        [TestCase("", default(string))]
-        [TestCase("Value", "Value")]
-        [TestCase(" ", " ")]
+        [Theory]
+        [InlineData(null, default(string))]
+        [InlineData("", default(string))]
+        [InlineData("Value", "Value")]
+        [InlineData(" ", " ")]
         public void TestDefaultIfNullOrEmpty(string value, string expect)
         {
-            Assert.AreEqual(expect, value.DefaultIfNullOrEmpty());
+            Assert.Equal(expect, value.DefaultIfNullOrEmpty());
         }
 
-        [Test]
-        [TestCase(null, null, null)]
-        [TestCase(null, default(string), default(string))]
-        [TestCase(null, "Default", "Default")]
-        [TestCase("", "Default", "Default")]
-        [TestCase(" ", "Default", " ")]
+        [Theory]
+        [InlineData(null, null, null)]
+        [InlineData(null, "Default", "Default")]
+        [InlineData("", "Default", "Default")]
+        [InlineData(" ", "Default", " ")]
         public void TestDefaultIfNullOrEmptyWithDefaultValue(string value, string defaultValue, string expect)
         {
-            Assert.AreEqual(expect, value.DefaultIfNullOrEmpty(defaultValue));
+            Assert.Equal(expect, value.DefaultIfNullOrEmpty(defaultValue));
         }
 
-        [Test]
-        [TestCase(null, default(string))]
-        [TestCase("", default(string))]
-        [TestCase("Value", "Value")]
-        [TestCase(" ", default(string))]
-        [TestCase("\n", default(string))]
-        [TestCase("\r", default(string))]
-        [TestCase("\t", default(string))]
+        [Theory]
+        [InlineData(null, default(string))]
+        [InlineData("", default(string))]
+        [InlineData("Value", "Value")]
+        [InlineData(" ", default(string))]
+        [InlineData("\n", default(string))]
+        [InlineData("\r", default(string))]
+        [InlineData("\t", default(string))]
         public void TestDefaultIfNullOrWhitespace(string value, string expect)
         {
-            Assert.AreEqual(expect, value.DefaultIfNullOrWhitespace());
+            Assert.Equal(expect, value.DefaultIfNullOrWhitespace());
         }
 
-        [Test]
-        [TestCase(null, null, default(string))]
-        [TestCase(null, default(string), default(string))]
-        [TestCase(null, "Default", "Default")]
-        [TestCase("", "Default", "Default")]
-        [TestCase(" ", "Default", "Default")]
-        [TestCase("\r", "Default", "Default")]
-        [TestCase("\n", "Default", "Default")]
-        [TestCase("\t", "Default", "Default")]
+        [Theory]
+        [InlineData(null, null, default(string))]
+        [InlineData(null, "Default", "Default")]
+        [InlineData("", "Default", "Default")]
+        [InlineData(" ", "Default", "Default")]
+        [InlineData("\r", "Default", "Default")]
+        [InlineData("\n", "Default", "Default")]
+        [InlineData("\t", "Default", "Default")]
         public void TestDefaultIfNullOrWhitespaceWithDefaultValue(string value, string defaultValue, string expect)
         {
-            Assert.AreEqual(expect, value.DefaultIfNullOrWhitespace(defaultValue));
+            Assert.Equal(expect, value.DefaultIfNullOrWhitespace(defaultValue));
         }
 
-        [Test]
-        [TestCase("this is a lowercase statement", false, "This Is A Lowercase Statement")]
-        [TestCase("MS VS", false, "MS VS")]
-        [TestCase("MASKS", true, "Masks")]
-        [TestCase("", false, "")]
+        [Theory]
+        [InlineData("this is a lowercase statement", false, "This Is A Lowercase Statement")]
+        [InlineData("MS VS", false, "MS VS")]
+        [InlineData("MASKS", true, "Masks")]
+        [InlineData("", false, "")]
         public void TestTitleCase(string value, bool includeAllCaps, string expect)
         {
-            Assert.AreEqual(expect, value.ToTitleCase(includeAllCaps));
+            Assert.Equal(expect, value.ToTitleCase(includeAllCaps));
         }
 
-        [Test]
-        [TestCase("Echo the input", "Echo the input")]
-        [TestCase("", "")]
-        [TestCase(" ", " ")]
-        [TestCase(null, "")]
-        [TestCase(default(string), "")]
+        [Theory]
+        [InlineData("Echo the input", "Echo the input")]
+        [InlineData("", "")]
+        [InlineData(" ", " ")]
+        [InlineData(null, "")]
         public void TestEmptyIfNull(string value, string expect)
         {
-            Assert.AreEqual(expect, value.EmptyIfNull());
+            Assert.Equal(expect, value.EmptyIfNull());
         }
 
-        [Test]
-        [TestCase("a", "a", true)]
-        [TestCase("a", "A", true)]
-        [TestCase("a", "B", false)]
+        [Theory]
+        [InlineData("a", "a", true)]
+        [InlineData("a", "A", true)]
+        [InlineData("a", "B", false)]
         public void TestEqualsIgnoreCase(string strA, string strB, bool expect)
         {
-            Assert.AreEqual(expect, strA.EqualsIgnoreCase(strB));
+            Assert.Equal(expect, strA.EqualsIgnoreCase(strB));
         }
 
-        [Test]
-        [TestCase("", "dot", false)]
-        [TestCase(null, "dot", false)]
-        [TestCase(null, null, false)]
-        [TestCase("dotnet string", null, false)]
-        [TestCase("dotnet string extensions", "dot", true)]
-        [TestCase("dotnet string extensions", "Dot", true)]
-        [TestCase("dotnet string extensions", "DOT", true)]
-        [TestCase("dotnet string extensions", "net", false)]
-        [TestCase("dotnet string extensions net", "net", false)]
+        [Theory]
+        [InlineData("", "dot", false)]
+        [InlineData(null, "dot", false)]
+        [InlineData(null, null, false)]
+        [InlineData("dotnet string", null, false)]
+        [InlineData("dotnet string extensions", "dot", true)]
+        [InlineData("dotnet string extensions", "Dot", true)]
+        [InlineData("dotnet string extensions", "DOT", true)]
+        [InlineData("dotnet string extensions", "net", false)]
+        [InlineData("dotnet string extensions net", "net", false)]
         public void TestStartsWithIgnoreCase(string value, string prefix, bool expect)
         {
-            Assert.AreEqual(expect, value.StartsWithIgnoreCase(prefix));
+            Assert.Equal(expect, value.StartsWithIgnoreCase(prefix));
         }
-        
-        [Test]
-        [TestCase("", "dot", false)]
-        [TestCase(null, "dot", false)]
-        [TestCase(null, null, false)]
-        [TestCase("net string dot", null, false)]
-        [TestCase("net string extensions dot", "dot", true)]
-        [TestCase("net string extensions dot", "Dot", true)]
-        [TestCase("net string extensions dot", "DOT", true)]
-        [TestCase( "net string extensions dot ", "dot", false)]
-        [TestCase("net string extensions net", "dot", false)]
+
+        [Theory]
+        [InlineData("", "dot", false)]
+        [InlineData(null, "dot", false)]
+        [InlineData(null, null, false)]
+        [InlineData("net string dot", null, false)]
+        [InlineData("net string extensions dot", "dot", true)]
+        [InlineData("net string extensions dot", "Dot", true)]
+        [InlineData("net string extensions dot", "DOT", true)]
+        [InlineData("net string extensions dot ", "dot", false)]
+        [InlineData("net string extensions net", "dot", false)]
         public void TestEndsWithIgnoreCase(string value, string prefix, bool expect)
         {
-            Assert.AreEqual(expect, value.EndsWithIgnoreCase(prefix));
+            Assert.Equal(expect, value.EndsWithIgnoreCase(prefix));
         }
     }
 }
